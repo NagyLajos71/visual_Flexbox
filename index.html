@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>How Flexbox works</title>
+  <link rel="stylesheet" href="./css/style.css" type="text/css">
+  <script type="module" src="./script/app.js" ></script>
+</head>
+<body>
+  <div id="allPanels">
+    <div id="helpPanel" class='mainPanel'>
+      <h3>Help</h3>
+      <div class="helpAxisDirection">
+        <input
+          type="checkbox"
+          id="axisCheckBox"
+          value="None"
+        /><!--ki/be kapcsolo, hogy kell-e vizualis segitseg ahhoz, hogy melyik tengelynek [Main, Cross] mi az iranya-->
+        <label for="axisCheckBox"> show Axis directions</label>
+      </div>
+      <div class="helpOnHover">
+        <input
+          type="checkbox"
+          id="helpCheckBox"
+          value="None"
+        /><!--ki/be kapcsolo, hogy kell-e felugro tobbletinformacio az adott beallitasrol-->
+        <label for="helpCheckBox">additional info when hover</label>
+      </div>
+
+    </div>
+    <div id="numberOfItemsPanel" class='mainPanel'>
+      <h3>NUMBER OF ITEMS</h3>
+      <button id="btnMinus" class="btn">-</button>
+      <label id="plusMinusLabel">5</label>
+      <button id="btnPlus" class="btn">+</button>
+    </div>
+    <div id="parentSettingsPanel" class='mainPanel flexboxSettings'>
+      <h3>Parent settings</h3>
+      <div class="leftColumn">
+        <div class="userChoice">
+          <label for="flexDirection">flex direction: </label
+            >
+            <select name="flex-direction" id="flexDirection">
+              <option value="row">row</option>
+              <option value="row-reverse">row-reverse</option>
+              <option value="column">column</option>
+              <option value="column-reverse">column-reverse</option>
+            </select>
+        </div>
+        <div class="userChoice">
+          <label for="flexWrap">flex wrap: </label>
+            <select name="flex-wrap" id="flexWrap">
+              <option value="nowrap">nowrap</option>
+              <option value="wrap">wrap</option>
+              <option value="wrap-reverse">wrap-reverse</option>
+            </select>
+        </div>
+        <div class="userChoice">
+          <label for="justifyContent">justify content: </label
+            ><!--a MAIN AXIS menten hogy huzza szet/tolja ossze/helyezze el a tartalmat-->
+            <select name="justify-content" id="justifyContent">
+              <option value="flex-start">flex-start</option>
+              <option value="flex-end">flex-end</option>
+              <option value="center">center</option>
+              <option value="space-between">space-between</option>
+              <option value="space-around">space-around</option>
+              <option value="space-evenly">space-evenly</option>
+            </select>
+        </div>
+      </div>
+      <div class="rightColumn">
+        <div class="userChoice">
+          <label for="alignItems">align items: </label
+            ><!--a CROSS AXIS menten hogy huzza szet/tolja ossze/helyezze el a tartalmat-->
+            <select name="align-items" id="alignItems">
+              <option value="stretch">stretch</option>
+              <option value="center">center</option>
+              <option value="flex-start">flex-start</option>
+              <option value="flex-end">flex-end</option>
+              <option value="baseline">baseline</option>
+            </select>
+        </div>
+        <div class="userChoice">
+          <label for="alignContent">align content: </label
+            ><!--a CROSS AXIS menten hogy huzza szet/tolja ossze/helyezze el a SOROKAT [csak tobbsoros tartalomnal mukodik]-->
+            <select name="align-content" id="alignContent">
+              <option value="stretch">stretch</option>
+              <option value="center">center</option>
+              <option value="flex-start">flex-start</option>
+              <option value="flex-end">flex-end</option>
+              <option value="space-between">space-between</option>
+              <option value="space-around">space-around</option>
+              <option value="space-evenly">space-evenly</option>
+            </select>
+        </div>
+        <div class="userChoice">
+          <button id="btnParentDefaultReset" class="btn">re-set</button>
+        </div>
+      </div>
+    </div>
+    <div id="itemsettingsPanel" class='mainPanel flexboxSettings'>
+      <h3>item settings</h3>
+      <div class="leftColumn hiddenColumn">
+        <div class="userChoice">
+          <label for="order">visual order: </label>
+          <input id="order" type="number" name="order"/>
+        </div>
+        <div class="userChoice">
+          <label for="alignSelf">align self: </label>
+          <select id="alignSelf" name="align-self">
+            <option value="auto" selected>auto</option>
+            <option value="stretch">stretch</option>
+            <option value="center">center</option>
+            <option value="flex-start">flex-start</option>
+            <option value="flex-end">flex-end</option>
+            <option value="baseline">baseline</option>
+          </select>
+        </div>
+        <div class="userChoice">
+          <label for="flexGrow">flex grow: </label>
+          <input id="flexGrow" name="flex-grow" type="number" min="0" />
+        </div>
+      </div>
+      <div class="rightColumn hiddenColumn">
+        <div class="userChoice">
+          <label for="flexShrink">flex shrink: </label>
+          <input
+            id="flexShrink"
+            type="number"
+            min="0"
+            value="1"
+            name="flex-shrink"
+          />
+        </div>
+        <div class="userChoice">
+          <label for="flexBasis">flex basis: </label>
+          <select id="flexBasis" name="flex-basis">
+            <option value="auto">auto</option>
+            <option value="50%">50%</option>
+            <option value="25vw">25vw</option>
+            <option value="350px">350px</option>
+          </select>
+        </div>
+        <div class="userChoice">
+          <button class="btn" id="btnAllItemsDefaultReset">re-set</button>
+        </div>
+      </div>
+      <div id="referenceLetter"></div>
+      <span id="tooltipItemSettings">Click on any of the colored boxes on the right to activate these settings</span>
+    </div>
+    <div id="whereTheActionHappens" class='mainPanel'>
+      <!--alapbol 5 doboz van, de ez novelheto/csokkentheto -->
+      <div class="actionBox">A</div>
+      <div class="actionBox">B</div>
+      <div class="actionBox">C</div>
+      <div class="actionBox">D</div>
+      <div class="actionBox">E</div>
+    </div>
+    <div id="overlapPanel" class="mainPanel">
+      <!--felugro panel, alapbol lathatatlan; ezen latszik, hogy melyik tengely [Main, Cross] milyen iranyu-->
+      <p id="horizontalText" class="axisText hiddenText"></p>
+      <!--MAIN/CROSS AXIS kozul a JS a flex-direction beallitastol fuggoen az egyiket fogja ide beirni-->
+      <p id="verticalText" class="axisText hiddenText"></p>
+      <!--MAIN/CROSS AXIS kozul a JS a flex-direction beallitastol fuggoen az egyiket fogja ide beirni-->
+      <p id="hintAxisInfo" class="hiddenText">
+        Hint: change axis directions with flex-direction property
+      </p>
+    </div>
+    <div id="popupModal">
+      <!--felugro panel, alapbol lathatatlan; ezen tovabbi informacio jelenik meg az adott beallitassal kapcsolatban-->
+      <span id="btnClosePopupModal">&times;</span>
+      <h4 id="propertyName"></h4>
+      <p id="propertyDescription"></p>
+      <h4 id="valueName"></h4>
+      <p id="valueDescription"></p>
+    </div>
+  </div>
+  
+</body>
+</html>
